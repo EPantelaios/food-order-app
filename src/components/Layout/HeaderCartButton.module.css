@@ -57,3 +57,23 @@
     transform: scale(1);
   }
 }
+
+
+@media (max-width: 600px) {
+  .button {
+    overflow: auto;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 260px) {
+  .button {
+    margin: 0;
+    padding: 0.8rem;
+  }
+  .content {
+    display: none;
+  }
+}
