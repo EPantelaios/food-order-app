@@ -1,8 +1,11 @@
+import { useState } from 'react';
+
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css';
+import SearchInput from './SearchInput';
 
-const EXAMPLE_MEALS = [
+const ALL_MEALS = [
   {
     id: 'm1',
     name: 'Sushi',
@@ -30,19 +33,36 @@ const EXAMPLE_MEALS = [
 ];
 
 const AvailableMeals = () => {
-  const mealsList = EXAMPLE_MEALS.map((meal) => (
-    <MealItem
-      key={meal.id}
-      id={meal.id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
-    />
-  ));
+  const [meals, setMeals] = useState(ALL_MEALS);
+
+  // console.log('Allmeals: ', meals);
+
+  const mealsList = meals?.map((meal) => {
+    return (
+      <MealItem
+        key={meal.id}
+        id={meal.id}
+        name={meal.name}
+        description={meal.description}
+        price={meal.price}
+      />
+    );
+  });
+
+  const onChangeSearch = (newMeals) => {
+    setMeals(newMeals);
+  };
 
   return (
     <section className={classes.meals}>
       <Card>
+        <SearchInput
+          titleClassName={classes.title}
+          inputClassName={classes.search}
+          title="Search Meals:"
+          items={ALL_MEALS}
+          onChange={onChangeSearch}
+        />
         <ul>{mealsList}</ul>
       </Card>
     </section>
