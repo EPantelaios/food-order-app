@@ -23,7 +23,8 @@ const Header = (props) => {
         <h1 onClick={() => window.location.reload(false)}>Order Food</h1>
         <div className={classes.cartIcon}>
           <HeaderCartButton onClick={props.onShowCart} />
-          <div
+          <button
+            type="button"
             id="theme-toggle"
             title="Toggles light & dark"
             aria-label="auto"
@@ -32,7 +33,7 @@ const Header = (props) => {
             onClick={themeHandler}
           >
             {isLightTheme ? <MoonThemeIcon /> : <SunThemeIcon />}
-          </div>
+          </button>
         </div>
       </header>
       <div className={classes['main-image']}>

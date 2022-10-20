@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';

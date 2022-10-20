@@ -30,14 +30,15 @@
   width: 0.5rem;
   height: 1.5rem;
   margin-left: 2rem;
-  z-index: 100;
+  z-index: 100;  
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 
 .header .icon:hover {
   cursor: pointer;
-  /* touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent; */
 }
 
 .main-image {
@@ -62,7 +63,7 @@
 
 
  
-@media (max-width: 600px) {
+@media (max-width: 620px) {
   .header {
     flex-direction: column;
     align-items: center;
