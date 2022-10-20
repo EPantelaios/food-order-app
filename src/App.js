@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import useLocalStorage from 'use-local-storage';
 
+import { ErrorBoundary } from './components/error-boundary/error-boundary';
+import CartProvider from './store/CartProvider';
+import Cart from './components/Cart/Cart';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
-import Cart from './components/Cart/Cart';
-import CartProvider from './store/CartProvider';
-import useLocalStorage from 'use-local-storage';
 
 function App() {
   const defaultLight = window.matchMedia(
@@ -38,15 +39,19 @@ function App() {
 
   return (
     <div data-theme={theme}>
-      <CartProvider>
-        {cartIsShown && <Cart onClose={hideCartHandler} currentTheme={theme} />}
-        <Header
-          currentTheme={theme}
-          onShowCart={showCartHandler}
-          onSwitchTheme={switchTheme}
-        />
-        <Meals />
-      </CartProvider>
+      <ErrorBoundary>
+        <CartProvider>
+          {cartIsShown && (
+            <Cart onClose={hideCartHandler} currentTheme={theme} />
+          )}
+          <Header
+            currentTheme={theme}
+            onShowCart={showCartHandler}
+            onSwitchTheme={switchTheme}
+          />
+          <Meals />
+        </CartProvider>
+      </ErrorBoundary>
     </div>
   );
 }
