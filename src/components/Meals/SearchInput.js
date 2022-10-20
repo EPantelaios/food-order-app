@@ -1,26 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, forwardRef } from 'react';
 
-function SearchInput(props) {
+function SearchInput(props, ref) {
   const [query, setQuery] = useState('');
-  const items = props.items;
-
-  const filteredItems = useCallback(() => {
-    if (!query) return items;
-
-    const queryLowerCase = query.toLowerCase();
-    return items.filter((item) => {
-      return item.name.toLowerCase().includes(queryLowerCase);
-    });
-  }, [items, query]);
 
   const onChangeSearch = (e) => {
     setQuery(e.target.value);
+    props.onChange();
   };
-
-  useEffect(() => {
-    props.onChange(filteredItems());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filteredItems]);
 
   return (
     <>
@@ -31,9 +17,10 @@ function SearchInput(props) {
         placeholder="Typing..."
         value={query}
         onChange={onChangeSearch}
+        ref={ref}
       />
     </>
   );
 }
 
-export default SearchInput;
+export default forwardRef(SearchInput);

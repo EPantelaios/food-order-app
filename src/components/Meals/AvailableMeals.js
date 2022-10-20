@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
@@ -34,8 +34,7 @@ const ALL_MEALS = [
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState(ALL_MEALS);
-
-  // console.log('Allmeals: ', meals);
+  const searchInputRef = useRef('');
 
   const mealsList = meals?.map((meal) => {
     return (
@@ -49,7 +48,17 @@ const AvailableMeals = () => {
     );
   });
 
-  const onChangeSearch = (newMeals) => {
+  const filteredItems = useCallback((query) => {
+    if (!query) return ALL_MEALS;
+
+    const queryLowerCase = query.toLowerCase();
+    return ALL_MEALS.filter((item) => {
+      return item.name.toLowerCase().includes(queryLowerCase);
+    });
+  }, []);
+
+  const onChangeSearch = () => {
+    const newMeals = filteredItems(searchInputRef.current.value);
     setMeals(newMeals);
   };
 
@@ -62,6 +71,7 @@ const AvailableMeals = () => {
           title="Search Meals:"
           items={ALL_MEALS}
           onChange={onChangeSearch}
+          ref={searchInputRef}
         />
         <ul>{mealsList}</ul>
       </Card>
