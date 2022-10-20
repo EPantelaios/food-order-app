@@ -68,7 +68,7 @@
   }
 }
 
-@media (max-width: 260px) {
+@media (max-width: 320px) {
   .button {
     margin: 0;
     padding: 0.8rem;

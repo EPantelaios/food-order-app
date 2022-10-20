@@ -13,6 +13,19 @@
   padding: 0;
 }
 
+.meals .title{
+  text-align: center;
+  font-weight: bold;
+  margin: 0.5rem;
+  color: var(--text-primary);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .meals .search{
   display: block;
   max-width: 20rem;
@@ -23,20 +36,14 @@
   height: 30px;
   padding: 0.25rem 0.5rem;
   outline: 0;
-  background-color: #f5f5f5;
   margin: 0.3rem auto;
+  background-color: white;
 }
 
 .meals .search:focus {
   outline: none;
   border-width: 2px;
   border-color: #8a2b06;
-}
-
-.meals .title{
-  text-align: center;
-  font-weight: bold;
-  margin: 0.5rem
 }
 
 @keyframes meals-appear {

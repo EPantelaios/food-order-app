@@ -9,7 +9,13 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   return (
-    <div className={classes.modal}>
+    <div
+      className={classes.modal}
+      style={{
+        backgroundColor: props.currentTheme === 'light' ? 'white' : 'grey',
+        color: props.currentTheme === 'light' ? 'black' : 'white',
+      }}
+    >
       <div className={classes.content}>{props.children}</div>
     </div>
   );
@@ -25,7 +31,9 @@ const Modal = (props) => {
         portalElement
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay>{props.children}</ModalOverlay>,
+        <ModalOverlay currentTheme={props.currentTheme}>
+          {props.children}
+        </ModalOverlay>,
         portalElement
       )}
     </>

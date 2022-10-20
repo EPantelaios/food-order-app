@@ -10,6 +10,55 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-color: var(--main-bg-color);
+}
+
+:root {
+  --main-bg-color: white;
+  --background-header: #8a2b06;
+  --background-meals: white;
+  --background-summary: grey;
+  --text-primary: black;
+  --text-summary: white;
+  --button: #8a2b06;
+  --button-hover: #641e03;
+  --price-meals: #ad5502;
+}
+
+:overlays {
+  --main-bg-color: white;
+  --background-header: #8a2b06;
+  --background-meals: white;
+  --background-summary: grey;
+  --text-primary: black;
+  --text-summary: white;
+  --button: #8a2b06;
+  --button-hover: #641e03;
+  --price-meals: #ad5502;
+}
+
+#overlays {
+  --main-bg-color: white;
+  --background-header: #8a2b06;
+  --background-meals: white;
+  --background-summary: grey;
+  --text-primary: black;
+  --text-summary: white;
+  --button: #8a2b06;
+  --button-hover: #641e03;
+  --price-meals: #ad5502;
+}
+
+
+[data-theme='dark'] {
+  --main-bg-color: grey;
+  --background-header: #641e03;
+  --background-meals: #383838;
+  --background-summary: #383838;
+  --text-primary: white;
+  /* --text-summary: black; */
+  --button: #641e03;
+  --button-hover: #8a2b06;
+  --price-meals: #ad5502;
 }
 
