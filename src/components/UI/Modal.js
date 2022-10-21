@@ -12,7 +12,7 @@ const ModalOverlay = (props) => {
     <div
       className={classes.modal}
       style={{
-        backgroundColor: props.currentTheme === 'light' ? 'white' : 'grey',
+        backgroundColor: props.currentTheme === 'light' ? 'white' : '#dddada',
         color: props.currentTheme === 'light' ? 'black' : 'white',
       }}
     >
