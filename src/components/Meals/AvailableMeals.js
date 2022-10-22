@@ -1,40 +1,50 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css';
 import SearchInput from './SearchInput';
 
-const ALL_MEALS = [
-  {
-    id: 'm1',
-    name: 'Sushi',
-    description: 'Finest fish and veggies',
-    price: 22.99,
-  },
-  {
-    id: 'm2',
-    name: 'Schnitzel',
-    description: 'A german specialty!',
-    price: 16.5,
-  },
-  {
-    id: 'm3',
-    name: 'Barbecue Burger',
-    description: 'American, raw, meaty',
-    price: 12.99,
-  },
-  {
-    id: 'm4',
-    name: 'Green Bowl',
-    description: 'Healthy...and green...',
-    price: 18.99,
-  },
-];
-
 const AvailableMeals = () => {
-  const [meals, setMeals] = useState(ALL_MEALS);
+  const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
   const searchInputRef = useRef('');
+  const initMeals = useRef([]);
+
+  useEffect(() => {
+    const fetchMeals = async () => {
+      const response = await fetch(
+        'https://order-food-app-ad148-default-rtdb.europe-west1.firebasedatabase.app/meals.json'
+      );
+      const responseData = await response.json();
+      console.log('responseData', responseData);
+
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+
+      let totalMeals = [];
+      Object.entries(responseData).map((meal) => {
+        return totalMeals.push({
+          id: meal[0],
+          name: meal[1].name,
+          description: meal[1].description,
+          price: meal[1].price,
+        });
+      });
+
+      console.log('useEffect -> totalMeals:\n', totalMeals);
+      setMeals(totalMeals);
+      setIsLoading(false);
+      initMeals.current.value = totalMeals;
+    };
+
+    fetchMeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+  }, []);
 
   const mealsList = meals?.map((meal) => {
     return (
@@ -49,10 +59,10 @@ const AvailableMeals = () => {
   });
 
   const filteredItems = useCallback((query) => {
-    if (!query) return ALL_MEALS;
+    if (!query) return initMeals.current.value;
 
     const queryLowerCase = query.toLowerCase();
-    return ALL_MEALS.filter((item) => {
+    return initMeals.current.value?.filter((item) => {
       return item.name.toLowerCase().includes(queryLowerCase);
     });
   }, []);
@@ -62,6 +72,22 @@ const AvailableMeals = () => {
     setMeals(newMeals);
   };
 
+  if (isLoading) {
+    return (
+      <section className={classes.MealsLoading}>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
+  if (httpError) {
+    return (
+      <section className={classes.MealsError}>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
+
   return (
     <section className={classes.meals}>
       <Card>
@@ -69,11 +95,21 @@ const AvailableMeals = () => {
           titleClassName={classes.title}
           inputClassName={classes.search}
           title="Search Meals:"
-          items={ALL_MEALS}
+          items={initMeals.current.value}
           onChange={onChangeSearch}
           ref={searchInputRef}
         />
-        <ul>{mealsList}</ul>
+        {isLoading && (
+          <section className={classes.MealsLoading}>
+            <p>Loading...</p>
+          </section>
+        )}
+        {httpError && (
+          <section className={classes.MealsError}>
+            <p>{httpError}</p>
+          </section>
+        )}
+        {!isLoading && !httpError && <ul>{mealsList}</ul>}
       </Card>
     </section>
   );
