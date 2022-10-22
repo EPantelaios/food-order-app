@@ -65,7 +65,7 @@ const Cart = (props) => {
         Close
       </button>
       {hasItems && (
-        <button className={classes.button} onClick={orderHandler}>
+        <button className={classes.buttonPrimary} onClick={orderHandler}>
           Order
         </button>
       )}
