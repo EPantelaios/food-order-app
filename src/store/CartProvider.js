@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 
 import CartContext from './cart-context';
 
@@ -9,8 +9,7 @@ const defaultCartState = {
 
 const cartReducer = (state, action) => {
   if (action.type === 'ADD') {
-    const updatedTotalAmount =
-      state.totalAmount + action.item.price * action.item.amount;
+    const updatedTotalAmount = state.totalAmount + action.item.price;
 
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
@@ -21,7 +20,7 @@ const cartReducer = (state, action) => {
     if (existingCartItem) {
       const updatedItem = {
         ...existingCartItem,
-        amount: existingCartItem.amount + action.item.amount,
+        amount: existingCartItem.amount + 1,
       };
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
@@ -60,6 +59,15 @@ const cartReducer = (state, action) => {
     return defaultCartState;
   }
 
+  if (action.type === 'DISPLAY') {
+    console.log('DISPLAY');
+    console.log('action:', action);
+    return {
+      items: action.items,
+      totalAmount: Math.abs(action.totalAmount),
+    };
+  }
+
   return defaultCartState;
 };
 
@@ -81,6 +89,14 @@ const CartProvider = (props) => {
     dispatchCartAction({ type: 'CLEAR' });
   };
 
+  const displayCartInfoHandler = (items, totalAmount) => [
+    dispatchCartAction({
+      type: 'DISPLAY',
+      items: items,
+      totalAmount: totalAmount,
+    }),
+  ];
+
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
@@ -88,6 +104,33 @@ const CartProvider = (props) => {
     removeItem: removeItemFromCartHandler,
     clearCart: clearCartHandler,
   };
+
+  useEffect(() => {
+    const fetchMeals = async () => {
+      const response = await fetch(
+        'https://order-food-app-ad148-default-rtdb.europe-west1.firebasedatabase.app/cart.json'
+      );
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+
+      let items = [];
+      responseData?.items != null &&
+        Object.entries(responseData.items).map((item, index) => {
+          console.log('item:', index, item[1]);
+          return items.push(item[1]);
+        });
+
+      return displayCartInfoHandler(
+        items || [],
+        responseData?.totalAmount || 0
+      );
+    };
+
+    fetchMeals();
+  }, []);
 
   return (
     <CartContext.Provider value={cartContext}>
