@@ -10,9 +10,10 @@ const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+  const [isButtonsDisable, setIsButtonsDisable] = useState(false);
   const cartCtx = useContext(CartContext);
 
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = `${cartCtx.totalAmount.toFixed(2)} €`;
   const hasItems = cartCtx.items.length > 0;
 
   const cartItemRemoveHandler = (id) => {
@@ -25,6 +26,7 @@ const Cart = (props) => {
 
   const orderHandler = () => {
     setIsCheckout(true);
+    setIsButtonsDisable(true);
   };
 
   const submitOrderHandler = async (userData) => {
@@ -34,7 +36,7 @@ const Cart = (props) => {
       {
         method: 'POST',
         body: JSON.stringify({
-          user: userData,
+          shippingInformation: userData,
           orderedItems: cartCtx.items,
         }),
       }
@@ -54,6 +56,7 @@ const Cart = (props) => {
           price={item.price}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
           onAdd={cartItemAddHandler.bind(null, item)}
+          disableButton={isButtonsDisable}
         />
       ))}
     </ul>
