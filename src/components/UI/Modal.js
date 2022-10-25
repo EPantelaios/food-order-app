@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import classes from './Modal.module.css';
@@ -24,6 +24,11 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById('overlays');
 
 const Modal = (props) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => (document.body.style.overflow = 'unset');
+  }, []);
+
   return (
     <>
       {ReactDOM.createPortal(
