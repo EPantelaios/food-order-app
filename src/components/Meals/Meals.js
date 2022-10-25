@@ -7,8 +7,6 @@ const Meals = () => {
   const cartCtx = useContext(CartContext);
 
   useEffect(() => {
-    console.log('items', cartCtx.items);
-
     const updateNewMeals = async () => {
       console.log(cartCtx.items);
       await fetch(
@@ -27,7 +25,10 @@ const Meals = () => {
         }
       );
     };
-    updateNewMeals();
+
+    updateNewMeals().catch((error) => {
+      console.error(error.message);
+    });
   }, [cartCtx.items, cartCtx.totalAmount]);
 
   return (
