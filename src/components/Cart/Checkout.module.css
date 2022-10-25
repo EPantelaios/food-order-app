@@ -1,6 +1,6 @@
 .form {
   margin: 1rem 0;
-  height: 19rem;
+  height: 20rem;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -46,7 +46,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 20rem;
-  max-width: 100%;
+  max-width: 90%;
 }
 
 .control input:focus {
@@ -57,15 +57,16 @@
 
 .actions {
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
   gap: 1rem;
-  margin-top: 2rem;
-  margin-right: 1rem;
+  margin: 2rem 1rem 2rem 0;
 }
 
 .actions button {
   font: inherit;
   cursor: pointer;
+  width: 8rem;
   background-color: transparent;
   border: 1px solid #8a2b06;
   padding: 0.5rem 2rem;
@@ -98,4 +99,14 @@
 .invalid input {
   border-color: #aa0b20;
   background-color: #ffeff1;
+}
+
+@media (max-width: 400px) {
+  .actions { 
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

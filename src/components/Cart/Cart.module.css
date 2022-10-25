@@ -54,7 +54,7 @@
   border: 1px solid #8a2b06;
   padding: 0.5rem 2rem;
   border-radius: 25px;
-  margin-left: 1rem;
+  margin: 0.5rem;
 }
 
 .actions button:hover,
@@ -71,4 +71,14 @@
 
 .actions .button--alt {
   color: #8a2b06;
+}
+
+@media (max-width: 400px) {
+  .actions { 
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
