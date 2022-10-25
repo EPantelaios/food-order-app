@@ -2,9 +2,12 @@ import { useContext, useState } from 'react';
 
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
-import classes from './Cart.module.css';
-import CartContext from '../../store/cart/cart-context';
 import Checkout from './Checkout';
+
+import CartContext from '../../store/cart/cart-context';
+import AuthContext from '../../store/auth/auth-context';
+
+import classes from './Cart.module.css';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -12,6 +15,7 @@ const Cart = (props) => {
   const [didSubmit, setDidSubmit] = useState(false);
   const [isButtonsDisable, setIsButtonsDisable] = useState(false);
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
 
   const totalAmount = `${cartCtx.totalAmount.toFixed(2)} €`;
   const hasItems = cartCtx.items.length > 0;
@@ -68,7 +72,16 @@ const Cart = (props) => {
         Close
       </button>
       {hasItems && (
-        <button className={classes.buttonPrimary} onClick={orderHandler}>
+        <button
+          disabled={!authCtx.isLoggedIn}
+          title={
+            !authCtx.isLoggedIn
+              ? 'You must be logged in to checkout.'
+              : 'Click to checkout.'
+          }
+          className={classes.buttonPrimary}
+          onClick={orderHandler}
+        >
           Order
         </button>
       )}
