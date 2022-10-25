@@ -45,6 +45,7 @@
 
 .header .themeIcon:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 
 .header .login {
@@ -87,7 +88,6 @@
     text-decoration: none;
     color: white;
     font-weight: bold;
-    padding: 0;
   }
 
   .header .headerNavbarRight {

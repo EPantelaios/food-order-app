@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthContext from '../../store/auth/auth-context';
+
+import { GrUserSettings } from 'react-icons/gr';
 import classes from './Login.module.css';
 
 const MainNavigation = () => {
@@ -20,16 +22,19 @@ const MainNavigation = () => {
           <Link to="/login">Login</Link>
         </button>
       )}
-      {/* {isLoggedIn && (
-        <button>
-          <Link to="/profile">Profile</Link>
-        </button>
-      )} */}
       {isLoggedIn && (
+        <span className={classes.profile}>
+          <Link to="/profile">
+            <GrUserSettings size={32} color="white" />
+          </Link>
+        </span>
+      )}
+
+      {/* {isLoggedIn && (
         <button className={classes.buttonLogout} onClick={logoutHandler}>
           <Link to="/login">Logout</Link>
         </button>
-      )}
+      )} */}
     </div>
   );
 };

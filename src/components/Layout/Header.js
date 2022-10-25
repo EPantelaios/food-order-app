@@ -27,7 +27,7 @@ const Header = (props) => {
       <header className={classes.header}>
         <div className={classes.headerTitle}>
           <Link to="/">
-            <h1 onClick={() => window.location.reload(true)}>Order Food</h1>
+            <h1>Order Food</h1>
           </Link>
         </div>
         <div className={classes.headerNavbarRight}>
@@ -51,7 +51,9 @@ const Header = (props) => {
         </div>
       </header>
       {!location.pathname.includes('login') &&
-      !location.pathname.includes('register') ? (
+      !location.pathname.includes('register') &&
+      !location.pathname.includes('profile') &&
+      !location.pathname.includes('changepassword') ? (
         <div className={classes['main-image']}>
           <img src={mealsImage} alt="A table full of delicious food!" />
         </div>
