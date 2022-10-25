@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -9,8 +9,6 @@ import mealsImage from '../../assets/meals.jpg';
 import SunThemeIcon from '../../assets/SunThemeIcon';
 import MoonThemeIcon from '../../assets/MoonThemeIcon';
 import Login from './Login';
-
-import AuthContext from '../../store/auth-context';
 
 const Header = (props) => {
   const location = useLocation();
@@ -29,7 +27,7 @@ const Header = (props) => {
       <header className={classes.header}>
         <div className={classes.headerTitle}>
           <Link to="/">
-            <h1>Order Food</h1>
+            <h1 onClick={() => window.location.reload(true)}>Order Food</h1>
           </Link>
         </div>
         <div className={classes.headerNavbarRight}>

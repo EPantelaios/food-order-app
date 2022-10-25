@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import MealsSummary from './MealsSummary';
 import AvailableMeals from './AvailableMeals';
-import CartContext from '../../store/cart-context';
+import CartContext from '../../store/cart/cart-context';
 
 const Meals = () => {
   const cartCtx = useContext(CartContext);

@@ -7,7 +7,7 @@ import { ErrorBoundary } from './components/error-boundary/error-boundary';
 import AuthPage from './pages/AuthPage';
 import UserProfile from './components/Profile/UserProfile';
 
-import CartProvider from './store/CartProvider';
+import CartProvider from './store/cart/CartProvider';
 import Cart from './components/Cart/Cart';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
