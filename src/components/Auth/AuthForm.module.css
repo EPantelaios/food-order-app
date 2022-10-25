@@ -1,0 +1,88 @@
+.auth {
+  margin: 3rem auto;
+  width: 95%;
+  max-width: 25rem;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 1px 4px #8a2b06;
+  padding: 1rem;
+  text-align: center;
+  color: #8a2b06;
+}
+
+.auth h1 {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  display: block;
+  color: #8a2b06;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  font: inherit;
+  background-color: white;
+  color: #8a2b06;
+  border: 1px solid grey;
+  border-radius: 4px;
+  width: 100%;
+  text-align: left;
+  padding: 0.25rem;
+}
+
+.control input:focus {
+  outline: none;
+  border-width: 2px;
+  border-color: #8a2b06;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #8a2b06;
+  border: 1px solid #8a2b06;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+}
+
+.actions button:hover {
+  background-color: #5a1a01;
+  border-color: #5a1a01;
+}
+
+.actions .toggle {
+  margin-top: 2rem;
+  background-color: transparent;
+  color: #9a2b06;
+  padding: 0.2rem 1rem;
+}
+
+.actions .toggle:hover {
+  background-color: transparent;
+  color: #5a1a01;
+}
+
+.switchAuth a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 0.2rem 0 ;
+}

@@ -1,0 +1,52 @@
+.headerButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+button {
+  display: border-box;
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 3px solid #3c0d00;
+  padding: 0.4rem 0rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+button:hover,
+button:active {
+  background-color: #3c0d00;
+  border-color: #3c0d00;
+  color: white;
+}
+
+/* .buttonLogout {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 3px solid #3c0d00;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.buttonLogout:hover,
+.buttonLogout:active {
+  background-color: #3c0d00;
+  border-color: #3c0d00;
+  color: white;
+} */
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+}
