@@ -8,7 +8,7 @@ import classes from './Header.module.css';
 import mealsImage from '../../assets/meals.jpg';
 import SunThemeIcon from '../../assets/SunThemeIcon';
 import MoonThemeIcon from '../../assets/MoonThemeIcon';
-import Login from './Login';
+import Profile from './Profile';
 
 const Header = (props) => {
   const location = useLocation();
@@ -35,7 +35,7 @@ const Header = (props) => {
             <HeaderCartButton onClick={props.onShowCart} />
           </div>
           <div className={classes.login}>
-            <Login />
+            <Profile />
           </div>
           <button
             type="button"
@@ -50,10 +50,7 @@ const Header = (props) => {
           </button>
         </div>
       </header>
-      {!location.pathname.includes('login') &&
-      !location.pathname.includes('register') &&
-      !location.pathname.includes('profile') &&
-      !location.pathname.includes('changepassword') ? (
+      {location.pathname === '/' ? (
         <div className={classes['main-image']}>
           <img src={mealsImage} alt="A table full of delicious food!" />
         </div>

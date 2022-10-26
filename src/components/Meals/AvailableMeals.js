@@ -18,7 +18,6 @@ const AvailableMeals = () => {
         'https://order-food-app-ad148-default-rtdb.europe-west1.firebasedatabase.app/meals.json'
       );
       const responseData = await response.json();
-      console.log('responseData', responseData);
 
       if (!response.ok) {
         throw new Error('Something went wrong!');
@@ -34,7 +33,6 @@ const AvailableMeals = () => {
         });
       });
 
-      console.log('useEffect -> totalMeals:\n', totalMeals);
       setMeals(totalMeals);
       setIsLoading(false);
       initMeals.current.value = totalMeals;
