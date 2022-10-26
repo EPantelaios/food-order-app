@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../store/auth/auth-context';
 
 import { GrUserSettings } from 'react-icons/gr';
-import classes from './Login.module.css';
+import classes from './Profile.module.css';
 
-const MainNavigation = () => {
+const Profile = () => {
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
@@ -18,14 +18,19 @@ const MainNavigation = () => {
   return (
     <div className={classes.headerButtons}>
       {!isLoggedIn && (
-        <button>
-          <Link to="/login">Login</Link>
-        </button>
+        <Link to="/login">
+          <button type="button">Login</button>
+        </Link>
       )}
+
+      {/* <UserProfile /> */}
+
       {isLoggedIn && (
         <span className={classes.profile}>
-          <Link to="/profile">
-            <GrUserSettings size={32} color="white" />
+          <Link to="/changepassword">
+            <button type="button">
+              <GrUserSettings size={32} />
+            </button>
           </Link>
         </span>
       )}
@@ -39,4 +44,4 @@ const MainNavigation = () => {
   );
 };
 
-export default MainNavigation;
+export default Profile;

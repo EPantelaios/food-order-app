@@ -5,21 +5,21 @@
   flex-wrap: nowrap;
 }
 
-button {
+.headerButtons button {
   display: border-box;
   font: inherit;
   cursor: pointer;
   background-color: transparent;
   border: 3px solid #3c0d00;
-  padding: 0.4rem 0rem;
+  padding: 0.4rem 1.5rem;
   border-radius: 5px;
   text-decoration: none;
   color: white;
   font-weight: bold;
 }
 
-button:hover,
-button:active {
+.headerButtons button:hover,
+.headerButtons button:active {
   background-color: #3c0d00;
   border-color: #3c0d00;
   color: white;
@@ -50,21 +50,27 @@ a {
   font-weight: bold;
 }
 
-.profile{
-  width: 3rem;
-  text-decoration: none;
-  background-color: transparent;
-  padding: 0 auto;
-  margin: 0.4rem 0 0 0;
+.profile {
+  margin: 0.4rem 0 0 1.2rem;
 }
 
-.profile:hover,
-.profile:focus {
+.profile button {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile:hover button,
+.profile:focus button{
+  border: none;
+  background-color: transparent;
   opacity: 0.6;
   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
   transform: translateY(-0.2em);
 }
 
-.profile a {
-  margin: 0 1.5rem;
-}
+/* .profile a button {
+  /* margin: 0 3rem; */
+/* } */
