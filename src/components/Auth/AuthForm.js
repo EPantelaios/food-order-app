@@ -1,5 +1,5 @@
 import { useState, useRef, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import AuthContext from '../../store/auth/auth-context';
 import classes from './AuthForm.module.css';
@@ -8,10 +8,14 @@ const AuthForm = () => {
   const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const passwordAgainInputRef = useRef();
+  const location = useLocation();
 
   const authCtx = useContext(AuthContext);
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(
+    location.pathname === '/register' ? false : true
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
@@ -23,6 +27,14 @@ const AuthForm = () => {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+
+    if (
+      enteredPassword &&
+      enteredPassword !== passwordAgainInputRef.current.value
+    ) {
+      alert('Passwords must be the same');
+      return;
+    }
 
     setIsLoading(true);
     let url;
@@ -81,6 +93,17 @@ const AuthForm = () => {
             ref={passwordInputRef}
           />
         </div>
+        {location.pathname === '/register' && (
+          <div className={classes.control}>
+            <label htmlFor="password">Enter Your Password Again</label>
+            <input
+              type="password"
+              id="passwordagain"
+              required
+              ref={passwordAgainInputRef}
+            />
+          </div>
+        )}
         <div className={classes.actions}>
           {!isLoading && (
             <button>{isLogin ? 'Login' : 'Create Account'}</button>
