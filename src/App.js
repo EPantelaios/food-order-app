@@ -5,7 +5,9 @@ import useLocalStorage from 'use-local-storage';
 import { ErrorBoundary } from './components/error-boundary/error-boundary';
 
 import AuthPage from './pages/AuthPage';
-import UserProfile from './components/Profile/UserProfile';
+import ProfilePage from './pages/ProfilePage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import CartProvider from './store/cart/CartProvider';
 import Cart from './components/Cart/Cart';
@@ -42,63 +44,51 @@ function App() {
     setCartIsShown(false);
   };
 
+  const contentRender = (
+    <>
+      {cartIsShown && <Cart onClose={hideCartHandler} currentTheme={theme} />}
+      <Header
+        currentTheme={theme}
+        onShowCart={showCartHandler}
+        onSwitchTheme={switchTheme}
+      />
+    </>
+  );
+
   return (
     <div data-theme={theme}>
       <ErrorBoundary>
         <Switch>
-          <Route path="/login">
+          <Route exact path="/">
             <CartProvider>
-              {cartIsShown && (
-                <Cart onClose={hideCartHandler} currentTheme={theme} />
-              )}
-              <Header
-                currentTheme={theme}
-                onShowCart={showCartHandler}
-                onSwitchTheme={switchTheme}
-              />
+              {contentRender}
+              <Meals />
             </CartProvider>
+          </Route>
+
+          <Route path="/login">
+            <CartProvider>{contentRender}</CartProvider>
             <AuthPage />
           </Route>
 
           <Route path="/register">
-            <CartProvider>
-              {cartIsShown && (
-                <Cart onClose={hideCartHandler} currentTheme={theme} />
-              )}
-              <Header
-                currentTheme={theme}
-                onShowCart={showCartHandler}
-                onSwitchTheme={switchTheme}
-              />
-            </CartProvider>
+            <CartProvider>{contentRender}</CartProvider>
             <AuthPage />
           </Route>
 
           <Route path="/profile">
-            <CartProvider>
-              {cartIsShown && (
-                <Cart onClose={hideCartHandler} currentTheme={theme} />
-              )}
-              <Header
-                currentTheme={theme}
-                onShowCart={showCartHandler}
-                onSwitchTheme={switchTheme}
-              />
-            </CartProvider>
-            <UserProfile />
+            <CartProvider>{contentRender}</CartProvider>
+            <ProfilePage />
           </Route>
-          <Route exact path="/">
-            <CartProvider>
-              {cartIsShown && (
-                <Cart onClose={hideCartHandler} currentTheme={theme} />
-              )}
-              <Header
-                currentTheme={theme}
-                onShowCart={showCartHandler}
-                onSwitchTheme={switchTheme}
-              />
-              <Meals />
-            </CartProvider>
+
+          <Route path="/changepassword">
+            <CartProvider>{contentRender}</CartProvider>
+            <ChangePasswordPage />
+          </Route>
+
+          <Route path="*">
+            <CartProvider>{contentRender}</CartProvider>
+            <NotFoundPage />
           </Route>
         </Switch>
       </ErrorBoundary>
