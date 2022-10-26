@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import HeaderCartButton from './HeaderCartButton';
 
@@ -27,7 +26,7 @@ const Header = (props) => {
       <header className={classes.header}>
         <div className={classes.headerTitle}>
           <Link to="/">
-            <h1>Order Food</h1>
+            <h1>OrderFood</h1>
           </Link>
         </div>
         <div className={classes.headerNavbarRight}>
