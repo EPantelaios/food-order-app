@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 
 import { ErrorBoundary } from './components/error-boundary/error-boundary';
@@ -9,15 +9,20 @@ import ProfilePage from './pages/ProfilePage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import NotFoundPage from './pages/NotFoundPage';
 
+import AuthContext from './store/auth/auth-context';
 import CartProvider from './store/cart/CartProvider';
 import Cart from './components/Cart/Cart';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 
 function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
+  const authCtx = useContext(AuthContext);
+
   const defaultLight = window.matchMedia(
     '(prefers-color-scheme: light)'
   ).matches;
+
   const [theme, setTheme] = useLocalStorage(
     'theme',
     defaultLight ? 'light' : 'dark'
@@ -34,8 +39,6 @@ function App() {
     setTheme(newTheme);
   };
 
-  const [cartIsShown, setCartIsShown] = useState(false);
-
   const showCartHandler = () => {
     setCartIsShown(true);
   };
@@ -44,53 +47,43 @@ function App() {
     setCartIsShown(false);
   };
 
-  const contentRender = (
-    <>
-      {cartIsShown && <Cart onClose={hideCartHandler} currentTheme={theme} />}
-      <Header
-        currentTheme={theme}
-        onShowCart={showCartHandler}
-        onSwitchTheme={switchTheme}
-      />
-    </>
-  );
-
   return (
     <div data-theme={theme}>
       <ErrorBoundary>
-        <Switch>
-          <Route exact path="/">
-            <CartProvider>
-              {contentRender}
+        <CartProvider>
+          {cartIsShown && (
+            <Cart onClose={hideCartHandler} currentTheme={theme} />
+          )}
+          <Header
+            currentTheme={theme}
+            onShowCart={showCartHandler}
+            onSwitchTheme={switchTheme}
+          />
+          <Switch>
+            <Route exact path="/">
               <Meals />
-            </CartProvider>
-          </Route>
-
-          <Route path="/login">
-            <CartProvider>{contentRender}</CartProvider>
-            <AuthPage />
-          </Route>
-
-          <Route path="/register">
-            <CartProvider>{contentRender}</CartProvider>
-            <AuthPage />
-          </Route>
-
-          <Route path="/profile">
-            <CartProvider>{contentRender}</CartProvider>
-            <ProfilePage />
-          </Route>
-
-          <Route path="/changepassword">
-            <CartProvider>{contentRender}</CartProvider>
-            <ChangePasswordPage />
-          </Route>
-
-          <Route path="*">
-            <CartProvider>{contentRender}</CartProvider>
-            <NotFoundPage />
-          </Route>
-        </Switch>
+            </Route>
+            <Route path="/login">
+              {authCtx.isLoggedIn && <Redirect exact to="/" />}
+              {!authCtx.isLoggedIn && <AuthPage />}
+            </Route>
+            <Route path="/register">
+              {authCtx.isLoggedIn && <Redirect exact to="/" />}
+              {!authCtx.isLoggedIn && <AuthPage />}
+            </Route>
+            <Route path="/profile">
+              {authCtx.isLoggedIn && <ProfilePage />}
+              {!authCtx.isLoggedIn && <Redirect to="/login" />}
+            </Route>
+            <Route path="/changepassword">
+              {authCtx.isLoggedIn && <ChangePasswordPage />}
+              {!authCtx.isLoggedIn && <Redirect to="/login" />}
+            </Route>
+            <Route path="*">
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        </CartProvider>
       </ErrorBoundary>
     </div>
   );
