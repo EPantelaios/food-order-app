@@ -1,0 +1,21 @@
+.returnPage {
+  text-align: center;
+}
+
+.returnPage button {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  color: #8a2b06;
+  background-color: transparent;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding: 0.4rem 1.5rem;
+}
+
+.returnPage button:hover,
+.returnPage button:active {
+  color: white;
+  background-color: #641e03;
+  border-color: #641e03;
+}
