@@ -29,6 +29,7 @@ const AuthForm = () => {
     const enteredPassword = passwordInputRef.current.value;
 
     if (
+      location.pathname === '/register' &&
       enteredPassword &&
       enteredPassword !== passwordAgainInputRef.current.value
     ) {

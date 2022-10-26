@@ -35,11 +35,13 @@ const Profile = () => {
         </span>
       )}
 
-      {/* {isLoggedIn && (
-        <button className={classes.buttonLogout} onClick={logoutHandler}>
-          <Link to="/login">Logout</Link>
-        </button>
-      )} */}
+      {isLoggedIn && (
+        <Link to="/login">
+          <button className={classes.buttonLogout} onClick={logoutHandler}>
+            Logout
+          </button>
+        </Link>
+      )}
     </div>
   );
 };
