@@ -49,6 +49,5 @@ body::-webkit-scrollbar-thumb {
   --background-meals: #383838;
   --background-summary: #383838;
   --text-primary: white;
-  /* --text-summary: black; */
+  --text-summary: white;
 }
-

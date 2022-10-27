@@ -8,7 +8,6 @@ const Meals = () => {
 
   useEffect(() => {
     const updateNewMeals = async () => {
-      console.log(cartCtx.items);
       await fetch(
         'https://order-food-app-ad148-default-rtdb.europe-west1.firebasedatabase.app/cart.json',
         {

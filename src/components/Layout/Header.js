@@ -11,7 +11,6 @@ import Profile from './Profile';
 
 const Header = (props) => {
   const location = useLocation();
-  console.log('location', location);
   const [isLightTheme, setIsLightTheme] = useState(
     props.currentTheme === 'light' ? true : false
   );

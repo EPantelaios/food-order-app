@@ -60,8 +60,6 @@ const cartReducer = (state, action) => {
   }
 
   if (action.type === 'DISPLAY') {
-    console.log('DISPLAY');
-    console.log('action:', action);
     return {
       items: action.items,
       totalAmount: Math.abs(action.totalAmount),
@@ -119,7 +117,6 @@ const CartProvider = (props) => {
       let items = [];
       responseData?.items != null &&
         Object.entries(responseData.items).map((item, index) => {
-          console.log('item:', index, item[1]);
           return items.push(item[1]);
         });
 
