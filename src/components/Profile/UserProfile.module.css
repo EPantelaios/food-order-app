@@ -1,8 +1,54 @@
 .profile {
+  max-width: 60rem;
+  min-width: 15rem;
+  width: 30%;
   margin: 3rem auto;
   text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  animation: meals-appear 1s ease-out forwards;
 }
 
 .profile h1 {
-  font-size: 5rem;
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.profile label {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.profile p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  box-shadow: inset 0 0 6px var(--background-header);
+  padding: 0.3rem;
+}
+
+.profile .emailVerify {
+  color: red;
+  margin-bottom: 1.5rem;
+}
+
+.loading {
+  text-align: center;
+  color: var(--text-primary);
+  font-size: large;
+}
+
+.httpError {
+  text-align: center;
+  color: red;
+  font-size: large;
+}
+
+
+@media (min-width: 1400px) {
+  .cardContent {
+    margin: auto 6rem;
+  }
 }
