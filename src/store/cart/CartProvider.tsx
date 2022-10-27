@@ -116,7 +116,7 @@ const CartProvider = (props) => {
 
       let items = [];
       responseData?.items != null &&
-        Object.entries(responseData.items).map((item, index) => {
+        Object.entries(responseData.items).map((item) => {
           return items.push(item[1]);
         });
 
