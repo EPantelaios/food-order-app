@@ -1,16 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
+
 import { Switch, Route, Redirect } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 
-import AuthPage from './pages/AuthPage';
-import ProfilePage from './pages/ProfilePage';
-import ChangePasswordPage from './pages/ChangePasswordPage';
-import NotFoundPage from './pages/NotFoundPage';
-
-import AuthContext from './store/auth/auth-context';
 import Cart from './components/Cart/Cart';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
+import AuthPage from './pages/AuthPage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
+import NotFoundPage from './pages/NotFoundPage';
+import ProfilePage from './pages/ProfilePage';
+import AuthContext from './store/auth/auth-context';
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);

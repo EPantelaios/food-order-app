@@ -1,4 +1,5 @@
 import { useState, useRef, useContext } from 'react';
+
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import AuthContext from '../../store/auth/auth-context';
@@ -62,7 +63,7 @@ const AuthForm = () => {
         if (res.ok) {
           return res.json();
         } else {
-          return res.json().then((data) => {
+          return res.json().then(() => {
             let errorMessage = 'Authentication failed!';
             throw new Error(errorMessage);
           });

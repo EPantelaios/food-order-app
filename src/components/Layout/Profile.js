@@ -1,10 +1,10 @@
 import { useContext } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import AuthContext from '../../store/auth/auth-context';
-import ProfileDropdownMenu from './ProfileDropdownMenu';
-
 import classes from './Profile.module.css';
+import ProfileDropdownMenu from './ProfileDropdownMenu';
 
 const Profile = () => {
   const authCtx = useContext(AuthContext);

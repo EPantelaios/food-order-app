@@ -1,12 +1,12 @@
 import { useState } from 'react';
+
 import { Link, useLocation } from 'react-router-dom';
 
-import HeaderCartButton from './HeaderCartButton';
-
-import classes from './Header.module.css';
 import mealsImage from '../../assets/meals.jpg';
-import SunThemeIcon from '../../assets/SunThemeIcon';
 import MoonThemeIcon from '../../assets/MoonThemeIcon';
+import SunThemeIcon from '../../assets/SunThemeIcon';
+import classes from './Header.module.css';
+import HeaderCartButton from './HeaderCartButton';
 import Profile from './Profile';
 
 const Header = (props) => {

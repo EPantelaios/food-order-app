@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react';
+
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { GrUserSettings } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 
 import AuthContext from '../../store/auth/auth-context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { GrUserSettings } from 'react-icons/gr';
-
 import classes from './ProfileDropdownMenu.module.css';
 
 const ProfileDropdownMenu = () => {

@@ -1,13 +1,11 @@
 import { useContext, useState } from 'react';
 
+import AuthContext from '../../store/auth/auth-context';
+import CartContext from '../../store/cart/cart-context';
 import Modal from '../UI/Modal';
+import classes from './Cart.module.css';
 import CartItem from './CartItem';
 import Checkout from './Checkout';
-
-import CartContext from '../../store/cart/cart-context';
-import AuthContext from '../../store/auth/auth-context';
-
-import classes from './Cart.module.css';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);

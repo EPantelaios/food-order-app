@@ -1,4 +1,5 @@
 import { useRef, useContext } from 'react';
+
 import { useHistory } from 'react-router-dom';
 
 import AuthContext from '../../store/auth/auth-context';
@@ -28,7 +29,7 @@ const ProfileForm = () => {
           'Content-Type': 'application/json',
         },
       }
-    ).then((res) => {
+    ).then(() => {
       history.replace('/');
     });
   };
