@@ -69,7 +69,11 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken);
+        const expirationTime = new Date(
+          // prettier-ignore
+          new Date().getTime() + (+data.expiresIn * 1000 * 24) //convert milliseconds to seconds
+        );
+        authCtx.login(data.idToken, expirationTime);
         history.replace('/');
       })
       .catch((err) => {
