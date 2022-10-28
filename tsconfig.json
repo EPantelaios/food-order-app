@@ -1,11 +1,10 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "resolveJsonModule": true,
     "declaration": true,
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -18,11 +17,13 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "noFallthroughCasesInSwitch": false,
     "jsx": "react-jsx",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src/**/*.ts", "declarations.d.ts"]
+  "include": ["src", "./global.d.ts"]
 }
