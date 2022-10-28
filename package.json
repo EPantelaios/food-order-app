@@ -1,6 +1,6 @@
 {
   "name": "food-order-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -16,14 +16,12 @@
     "@types/react-dom": "^18.0.8",
     "babel-plugin-macros": "^3.1.0",
     "commitlint": "^17.1.2",
-    "eslint": "^8.26.0",
     "eslint-import-resolver-typescript": "^3.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.8.4",
     "use-local-storage": "^2.3.6",
     "web-vitals": "^2.1.4"
   },
@@ -54,7 +52,11 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.18.6",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
     "babel-eslint": "^10.1.0",
+    "eslint": "^8.26.0",
+    "typescript": "^4.8.4",
     "typescript-plugin-css-modules": "^3.4.0"
   }
 }
