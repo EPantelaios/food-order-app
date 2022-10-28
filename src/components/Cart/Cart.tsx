@@ -7,7 +7,12 @@ import classes from './Cart.module.css';
 import CartItem from './CartItem';
 import Checkout from './Checkout';
 
-const Cart = (props) => {
+type Props = {
+  onClose: () => void;
+  currentTheme: string;
+};
+
+const Cart = (props: Props) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
@@ -106,9 +111,7 @@ const Cart = (props) => {
     <>
       <p className={classes.successOrder}>Successfully sent the order!</p>
       <div className={classes.actions}>
-        <button className={classes.button} onClick={props.onClose}>
-          Close
-        </button>
+        <button onClick={props.onClose}>Close</button>
       </div>
     </>
   );

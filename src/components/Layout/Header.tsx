@@ -9,7 +9,13 @@ import classes from './Header.module.css';
 import HeaderCartButton from './HeaderCartButton';
 import Profile from './Profile';
 
-const Header = (props) => {
+type Props = {
+  currentTheme: string;
+  onSwitchTheme: () => void;
+  onShowCart: () => void;
+};
+
+const Header = (props: Props) => {
   const location = useLocation();
   const [isLightTheme, setIsLightTheme] = useState(
     props.currentTheme === 'light' ? true : false

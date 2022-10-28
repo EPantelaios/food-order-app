@@ -7,10 +7,10 @@ import SearchInput from './SearchInput';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
-  const searchInputRef = useRef('');
-  const initMeals = useRef([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [httpError, setHttpError] = useState<string>();
+  const searchInputRef = useRef<HTMLInputElement>();
+  const initMeals = useRef<any>([]);
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -23,8 +23,8 @@ const AvailableMeals = () => {
         throw new Error('Something went wrong!');
       }
 
-      let totalMeals = [];
-      Object.entries(responseData).map((meal) => {
+      const totalMeals = [];
+      Object.entries(responseData).map((meal: any) => {
         return totalMeals.push({
           id: meal[0],
           name: meal[1].name,
@@ -93,7 +93,6 @@ const AvailableMeals = () => {
           titleClassName={classes.title}
           inputClassName={classes.search}
           title="Search Meals:"
-          items={initMeals.current.value}
           onChange={onChangeSearch}
           ref={searchInputRef}
         />

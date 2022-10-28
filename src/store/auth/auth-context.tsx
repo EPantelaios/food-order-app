@@ -1,10 +1,17 @@
 import React from 'react';
 
-const AuthContext = React.createContext({
+type Props = {
+  token: string;
+  isLoggedIn: boolean;
+  login: (token: string, expirationTime: Date) => void;
+  logout: () => void;
+};
+
+const AuthContext = React.createContext<Props>({
   token: '',
   isLoggedIn: false,
   // eslint-disable-next-line
-  login: (token) => {},
+  login: (token, expirationTime) => {},
   logout: () => {},
 });
 

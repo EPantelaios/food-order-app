@@ -5,16 +5,20 @@ import Card from '../UI/Card';
 import classes from './UserProfile.module.css';
 
 const UserProfile = () => {
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<{
+    email: string;
+    emailVerified: boolean;
+    lastLoginAt: string;
+  }>({
     email: '',
     emailVerified: false,
-    lastLoginAt: Date,
+    lastLoginAt: '',
   });
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
   const authCtx = useContext(AuthContext);
 
-  const formatDate = (d) => {
+  const formatDate = (d: Date): string => {
     return (
       d.getFullYear().toString() +
       '-' +
@@ -30,9 +34,9 @@ const UserProfile = () => {
         ? d.getHours().toString()
         : '0' + d.getHours().toString()) +
       ':' +
-      ((parseInt(d.getMinutes() / 5) * 5).toString().length === 2
-        ? (parseInt(d.getMinutes() / 5) * 5).toString()
-        : '0' + (parseInt(d.getMinutes() / 5) * 5).toString())
+      ((d.getMinutes() / 5) * 5 === 2
+        ? ((d.getMinutes() / 5) * 5).toString()
+        : '0' + ((d.getMinutes() / 5) * 5).toString())
     );
   };
 

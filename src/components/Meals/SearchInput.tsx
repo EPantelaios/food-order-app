@@ -1,6 +1,13 @@
 import { useState, forwardRef } from 'react';
 
-function SearchInput(props, ref) {
+type Props = {
+  titleClassName?: string;
+  inputClassName?: string;
+  title: string;
+  onChange: () => void;
+};
+
+const SearchInput = (props: Props, ref: React.Ref<HTMLInputElement>) => {
   const [query, setQuery] = useState('');
 
   const onChangeSearch = (e) => {
@@ -21,6 +28,6 @@ function SearchInput(props, ref) {
       />
     </>
   );
-}
+};
 
 export default forwardRef(SearchInput);

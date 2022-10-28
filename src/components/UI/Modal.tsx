@@ -4,11 +4,26 @@ import ReactDOM from 'react-dom';
 
 import classes from './Modal.module.css';
 
-const Backdrop = (props) => {
+type PropsBackdrop = {
+  onClose: () => void;
+};
+
+type PropsModalOverlay = {
+  currentTheme: string;
+  children: React.ReactNode;
+};
+
+type PropsModal = {
+  onClose: () => void;
+  currentTheme: string;
+  children: React.ReactNode;
+};
+
+const Backdrop = (props: PropsBackdrop) => {
   return <div className={classes.backdrop} onClick={props.onClose} />;
 };
 
-const ModalOverlay = (props) => {
+const ModalOverlay = (props: PropsModalOverlay) => {
   return (
     <div
       className={classes.modal}
@@ -17,17 +32,19 @@ const ModalOverlay = (props) => {
         color: props.currentTheme === 'light' ? 'black' : 'white',
       }}
     >
-      <div className={classes.content}>{props.children}</div>
+      <div>{props.children}</div>
     </div>
   );
 };
 
 const portalElement = document.getElementById('overlays');
 
-const Modal = (props) => {
+const Modal = (props: PropsModal) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return () => (document.body.style.overflow = 'unset');
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, []);
 
   return (

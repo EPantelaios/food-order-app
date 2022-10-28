@@ -1,6 +1,15 @@
 import classes from './CartItem.module.css';
 
-const CartItem = (props) => {
+type Props = {
+  price: number;
+  name: string;
+  amount: number;
+  disableButton: boolean;
+  onRemove: () => void;
+  onAdd: () => void;
+};
+
+const CartItem = (props: Props) => {
   const price = `${props.price.toFixed(2)} €`;
 
   return (

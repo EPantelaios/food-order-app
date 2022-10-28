@@ -8,7 +8,7 @@ import classes from './ChangePassword.module.css';
 const ProfileForm = () => {
   const history = useHistory();
 
-  const newPasswordInputRef = useRef();
+  const newPasswordInputRef = useRef<HTMLInputElement>();
   const authCtx = useContext(AuthContext);
 
   const submitHandler = (event) => {
@@ -44,7 +44,7 @@ const ProfileForm = () => {
             <input
               type="password"
               id="new-password"
-              minLength="7"
+              minLength={7}
               ref={newPasswordInputRef}
             />
           </div>

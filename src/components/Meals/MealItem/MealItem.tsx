@@ -4,7 +4,14 @@ import CartContext from '../../../store/cart/cart-context';
 import classes from './MealItem.module.css';
 import MealItemForm from './MealItemForm';
 
-const MealItem = (props) => {
+export type MealItemProps = {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+};
+
+const MealItem = (props: MealItemProps) => {
   const cartContext = useContext(CartContext);
 
   const price = `${props.price.toFixed(2)} €`;

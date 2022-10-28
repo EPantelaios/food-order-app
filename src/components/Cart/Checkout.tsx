@@ -5,7 +5,17 @@ import classes from './Checkout.module.css';
 const isEmpty = (value) => value.trim() === '';
 const isFiveChars = (value) => value.trim().length === 5;
 
-const Checkout = (props) => {
+type Props = {
+  onConfirm: (obj: {
+    name: string;
+    street: string;
+    city: string;
+    postalCode: string;
+  }) => void;
+  onCancel: () => void;
+};
+
+const Checkout = (props: Props) => {
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -13,10 +23,10 @@ const Checkout = (props) => {
     postalCode: true,
   });
 
-  const nameInputRef = useRef();
-  const streetInputRef = useRef();
-  const postalCodeInputRef = useRef();
-  const cityInputRef = useRef();
+  const nameInputRef = useRef<HTMLInputElement>();
+  const streetInputRef = useRef<HTMLInputElement>();
+  const postalCodeInputRef = useRef<HTMLInputElement>();
+  const cityInputRef = useRef<HTMLInputElement>();
 
   const confirmHandler = (event) => {
     event.preventDefault();

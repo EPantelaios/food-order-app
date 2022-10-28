@@ -1,6 +1,22 @@
 import React from 'react';
+import { MealItemProps } from '../../components/Meals/MealItem/MealItem';
 
-const CartContext = React.createContext({
+type CartItemProps = {
+  id: string;
+  name: string;
+  amount: number;
+  price: number;
+};
+
+type Props = {
+  items: CartItemProps[];
+  totalAmount: number;
+  addItem: (item: CartItemProps) => void;
+  removeItem: (id: string) => void;
+  clearCart: () => void;
+};
+
+const CartContext = React.createContext<Props>({
   items: [],
   totalAmount: 0,
   // eslint-disable-next-line

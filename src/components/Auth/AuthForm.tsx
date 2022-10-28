@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext, InputHTMLAttributes } from 'react';
 
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
@@ -7,9 +7,9 @@ import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
   const history = useHistory();
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
-  const passwordAgainInputRef = useRef();
+  const emailInputRef = useRef<HTMLInputElement>();
+  const passwordInputRef = useRef<HTMLInputElement>();
+  const passwordAgainInputRef = useRef<HTMLInputElement>();
   const location = useLocation();
 
   const authCtx = useContext(AuthContext);
@@ -64,13 +64,13 @@ const AuthForm = () => {
           return res.json();
         } else {
           return res.json().then(() => {
-            let errorMessage = 'Authentication failed!';
+            const errorMessage = 'Authentication failed!';
             throw new Error(errorMessage);
           });
         }
       })
       .then((data) => {
-        const expirationTime = new Date(
+        const expirationTime: Date = new Date(
           // prettier-ignore
           new Date().getTime() + (+data.expiresIn * 1000 * 24) //convert milliseconds to seconds
         );
