@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 type Props = {
@@ -10,7 +11,6 @@ type Props = {
 const AuthContext = React.createContext<Props>({
   token: '',
   isLoggedIn: false,
-  // eslint-disable-next-line
   login: (token, expirationTime) => {},
   logout: () => {},
 });

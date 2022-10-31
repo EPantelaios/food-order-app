@@ -5,6 +5,7 @@ import classes from './MealItemForm.module.css';
 
 type Props = {
   id: string;
+  // eslint-disable-next-line no-unused-vars
   onAddToCart: (amount: number) => void;
 };
 

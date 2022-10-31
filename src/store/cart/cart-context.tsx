@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { MealItemProps } from '../../components/Meals/MealItem/MealItem';
 
 type CartItemProps = {
   id: string;
@@ -19,9 +19,7 @@ type Props = {
 const CartContext = React.createContext<Props>({
   items: [],
   totalAmount: 0,
-  // eslint-disable-next-line
   addItem: (item) => {},
-  // eslint-disable-next-line
   removeItem: (id) => {},
   clearCart: () => {},
 });

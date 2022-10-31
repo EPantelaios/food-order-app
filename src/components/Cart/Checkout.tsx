@@ -6,6 +6,7 @@ const isEmpty = (value) => value.trim() === '';
 const isFiveChars = (value) => value.trim().length === 5;
 
 type Props = {
+  // eslint-disable-next-line no-unused-vars
   onConfirm: (obj: {
     name: string;
     street: string;
