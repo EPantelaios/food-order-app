@@ -69,7 +69,11 @@ const cartReducer = (state, action) => {
   return defaultCartState;
 };
 
-const CartProvider = (props) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const CartProvider = (props: Props) => {
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
@@ -114,7 +118,7 @@ const CartProvider = (props) => {
         throw new Error('Something went wrong!');
       }
 
-      let items = [];
+      const items: unknown[] = [];
       responseData?.items != null &&
         Object.entries(responseData.items).map((item) => {
           return items.push(item[1]);

@@ -10,7 +10,19 @@ const AvailableMeals = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [httpError, setHttpError] = useState<string>();
   const searchInputRef = useRef<HTMLInputElement>();
-  const initMeals = useRef<any>([]);
+  let storedMeals: {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+  }[] = [
+    {
+      id: '',
+      name: '',
+      description: '',
+      price: 0,
+    },
+  ];
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -24,18 +36,22 @@ const AvailableMeals = () => {
       }
 
       const totalMeals = [];
-      Object.entries(responseData).map((meal: any) => {
-        return totalMeals.push({
-          id: meal[0],
-          name: meal[1].name,
-          description: meal[1].description,
-          price: meal[1].price,
-        });
-      });
+      Object.entries(responseData).map(
+        (
+          meal: [string, { name: string; description: string; price: number }]
+        ) => {
+          return totalMeals.push({
+            id: meal[0],
+            name: meal[1].name,
+            description: meal[1].description,
+            price: meal[1].price,
+          });
+        }
+      );
 
       setMeals(totalMeals);
       setIsLoading(false);
-      initMeals.current.value = totalMeals;
+      storedMeals = totalMeals;
     };
 
     fetchMeals().catch((error) => {
@@ -57,10 +73,10 @@ const AvailableMeals = () => {
   });
 
   const filteredItems = useCallback((query) => {
-    if (!query) return initMeals.current.value;
+    if (!query) return storedMeals;
 
     const queryLowerCase = query.toLowerCase();
-    return initMeals.current.value?.filter((item) => {
+    return storedMeals?.filter((item) => {
       return item.name.toLowerCase().includes(queryLowerCase);
     });
   }, []);

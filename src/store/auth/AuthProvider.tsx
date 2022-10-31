@@ -4,7 +4,7 @@ import AuthContext from './auth-context';
 
 let logoutTimer: NodeJS.Timeout;
 
-const calculateRemainingTime = (expirationTime) => {
+const calculateRemainingTime = (expirationTime: string) => {
   const currentTime = new Date().getTime();
   const adjExpirationTime = new Date(expirationTime).getTime();
 
@@ -32,7 +32,11 @@ const retrieveStoredToken = () => {
   };
 };
 
-const AuthProvider = (props) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const AuthProvider = (props: Props) => {
   const tokenData = retrieveStoredToken();
 
   let initialToken;
