@@ -1,5 +1,8 @@
 {
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
@@ -32,11 +35,6 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "requireConfigFile": false,
-    "babelOptions": {
-      "babelrc": false,
-      "configFile": "./babel.config.js",
-      "presets": ["@babel/preset-react"]
-    },
     "ecmaFeatures": {
       "jsx": true
     },
@@ -46,13 +44,12 @@
   "plugins": ["@typescript-eslint"],
   "root": true,
   "rules": {
-    "no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-function": "off",
     "import/no-unresolved": "error",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": [0],
     "react/display-name": "off",
-    "no-empty-function": "off",
     "import/order": [
       "warn",
       {
