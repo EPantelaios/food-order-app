@@ -30,9 +30,9 @@ const ProfileDropdownMenu = () => {
       >
         <Link to="profile">My Profile</Link>
         <Link to="changepassword">Change Password</Link>
-        <Link to="login">
-          <span onClick={logoutHandler}>Logout</span>
-        </Link>
+        <div onClick={logoutHandler}>
+          <Link to="login">Logout</Link>
+        </div>
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ a:hover, .dropdown:hover .dropbtn {
 }
 
 .dropdownContent a:hover {
-  background-color: #ddd;
+  background-color: #eee;
 }
 
 .dropdown:hover .dropdownContent {
