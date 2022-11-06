@@ -1,6 +1,6 @@
 #### Built a food order SPA from scratch using ReactJS, Context API, React Router, Custom Hooks, vanilla CSS modules and with Firebase serverless service for HTTPS requests. 
 
-#### The project is hosted [here](soon...)
+#### The project is hosted [here](https://food-order.epantelaios.vercel.app/)
 
 #### `Instructions:`
 
