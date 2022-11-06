@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Suspense } from 'react';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
@@ -6,11 +6,15 @@ import useLocalStorage from 'use-local-storage';
 import Cart from './components/Cart/Cart';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
-import AuthPage from './pages/AuthPage';
-import ChangePasswordPage from './pages/ChangePasswordPage';
-import NotFoundPage from './pages/NotFoundPage';
-import ProfilePage from './pages/ProfilePage';
+import LoadingSpinner from './components/UI/LoadingSpinner';
 import AuthContext from './store/auth/auth-context';
+
+const AuthPage = React.lazy(() => import('./pages/AuthPage'));
+const ProfilePage = React.lazy(() => import('./pages/ProfilePage'));
+const ChangePasswordPage = React.lazy(
+  () => import('./pages/ChangePasswordPage')
+);
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -52,30 +56,32 @@ function App() {
         onShowCart={showCartHandler}
         onSwitchTheme={switchTheme}
       />
-      <Switch>
-        <Route exact path="/">
-          <Meals />
-        </Route>
-        <Route path="/login">
-          {authCtx.isLoggedIn && <Redirect exact to="/" />}
-          {!authCtx.isLoggedIn && <AuthPage />}
-        </Route>
-        <Route path="/register">
-          {authCtx.isLoggedIn && <Redirect exact to="/" />}
-          {!authCtx.isLoggedIn && <AuthPage />}
-        </Route>
-        <Route path="/profile">
-          {authCtx.isLoggedIn && <ProfilePage />}
-          {!authCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="/changepassword">
-          {authCtx.isLoggedIn && <ChangePasswordPage />}
-          {!authCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="*">
-          <NotFoundPage />
-        </Route>
-      </Switch>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Switch>
+          <Route exact path="/">
+            <Meals />
+          </Route>
+          <Route path="/login">
+            {authCtx.isLoggedIn && <Redirect exact to="/" />}
+            {!authCtx.isLoggedIn && <AuthPage />}
+          </Route>
+          <Route path="/register">
+            {authCtx.isLoggedIn && <Redirect exact to="/" />}
+            {!authCtx.isLoggedIn && <AuthPage />}
+          </Route>
+          <Route path="/profile">
+            {authCtx.isLoggedIn && <ProfilePage />}
+            {!authCtx.isLoggedIn && <Redirect to="/login" />}
+          </Route>
+          <Route path="/changepassword">
+            {authCtx.isLoggedIn && <ChangePasswordPage />}
+            {!authCtx.isLoggedIn && <Redirect to="/login" />}
+          </Route>
+          <Route path="*">
+            <NotFoundPage />
+          </Route>
+        </Switch>
+      </Suspense>
     </div>
   );
 }
