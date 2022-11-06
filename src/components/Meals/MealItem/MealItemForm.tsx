@@ -5,7 +5,6 @@ import classes from './MealItemForm.module.css';
 
 type Props = {
   id: string;
-  // eslint-disable-next-line no-unused-vars
   onAddToCart: (amount: number) => void;
 };
 
@@ -13,7 +12,7 @@ const MealItemForm = (props: Props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef<HTMLInputElement>();
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const enteredAmount = amountInputRef.current.value;
