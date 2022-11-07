@@ -6,7 +6,7 @@
   text-align: center;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  animation: meals-appear 1s ease-out forwards;
+  animation: profile-appear 400ms ease-out forwards;
 }
 
 .profile h1 {
@@ -50,5 +50,17 @@
 @media (min-width: 1400px) {
   .cardContent {
     margin: auto 6rem;
+  }
+}
+
+@keyframes profile-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
